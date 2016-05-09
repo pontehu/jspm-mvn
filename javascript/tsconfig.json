@@ -8,8 +8,11 @@
 		"noImplicitAny": true
 	},
 	"exclude": [
-		"node_modules",
+		"bin",
+		"coverage",
 		"lib",
+		"node_modules",
+		"spec",
 		"typings/browser",
 		"typings/browser.d.ts"
 	]

@@ -28,10 +28,16 @@ Installation
 Develop
 -------
 
-JavaScript: Run `npm run watch` in `/javascript`.
+### JavaScript
 
-Java: Use the `pom.xml` in `/java`.
+- Clean: Run `npm run clean` in `/javascript`.
+- Build: Run `npm run build` in `/javascript`.
+- Watch: Run `npm run watch` in `/javascript`.
+- Test: Run `npm test` in `/javascript`.
+- Coverage report: Run `npm run cover` in `/javascript`.
 
-Test: Run `npm test` in `/javascript`.
+Coverage report will output to `/javascript/coverage`.
 
-JS Coverage report: Run `npm run cover` in `/javascript`. The coverage is in `/javascript/coverage`
+### Java
+
+Use the `pom.xml` in `/java`.

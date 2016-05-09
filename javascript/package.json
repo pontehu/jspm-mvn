@@ -13,8 +13,10 @@
     "typings": "^0.8.1"
   },
   "scripts": {
-    "build": "mvn -f ../java/pom.xml clean package && typings install && tsc",
-    "watch": "tsc --watch",
+    "clean": "rimraf bin coverage lib",
+    "build-java-helper": "mvn -f ../java/pom.xml clean package",
+    "build": "npm run clean && npm run build-java-helper && typings install && tsc",
+    "watch": "npm run build && tsc --watch",
     "prepublish": "npm run build && npm run test",
     "test": "jasmine",
     "cover": "istanbul cover jasmine"
