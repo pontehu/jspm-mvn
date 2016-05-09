@@ -1,0 +1,25 @@
+{
+  "name": "jspm-mvn",
+  "version": "0.3.0",
+  "main": "lib/index.js",
+  "publishConfig": {
+    "registry": "http://192.168.0.3:4873/"
+  },
+  "devDependencies": {
+    "typescript": "^1.8.10",
+    "typings": "^0.8.1"
+  },
+  "scripts": {
+    "build": "mvn -f ../java/pom.xml clean package && typings install && tsc",
+    "watch": "typings install && tsc --watch",
+    "prepublish": "mvn -f ../java/pom.xml clean package && typings install && tsc"
+  },
+  "dependencies": {
+    "bluebird": "^3.3.5",
+    "mkdirp": "^0.5.1",
+    "yauzl": "^2.4.1"
+  },
+  "peerDependencies": {
+    "jspm": ">0.17.0-beta.1"
+  }
+}

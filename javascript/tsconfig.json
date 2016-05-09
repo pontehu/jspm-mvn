@@ -1,0 +1,16 @@
+{
+	"compilerOptions": {
+		"target": "es6",
+		"module": "commonjs",
+		"sourceMap": true,
+		"outDir": "lib",
+		"rootDir": "src",
+		"noImplicitAny": true
+	},
+	"exclude": [
+		"node_modules",
+		"lib",
+		"typings/browser",
+		"typings/browser.d.ts"
+	]
+}

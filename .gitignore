@@ -1,0 +1,8 @@
+.vscode
+*.iml
+.idea
+java/target
+javascript/bin
+javascript/lib
+javascript/node_modules
+javascript/typings
