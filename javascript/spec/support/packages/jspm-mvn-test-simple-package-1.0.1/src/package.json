@@ -1,0 +1,10 @@
+{
+  "name": "jspm-mvn-test-simple-package",
+  "version": "1.0.1-SNAPSHOT",
+  "jspm": {
+    "jspmPackage": true,
+    "registry": "mvn",
+    "format": "amd",
+    "main": "main.js"
+  }
+}

@@ -7,11 +7,6 @@ import {downloadPackage, getVersions} from "./maven-commands";
 const fsReadFile = Promise.promisify<string, string, string>(_fsReadFile);
 
 export class Registry implements IJSPMRegistry {
-	private _tmpDir:string;
-	constructor(options:any, ui:any) {
-		this._tmpDir = options.tmpDir;
-	}
-
 	async lookup(packageName:string):Promise<ILookupResult> {
 		const versions = await getVersions(packageName);
 		if (versions.length === 0) return NotFound;

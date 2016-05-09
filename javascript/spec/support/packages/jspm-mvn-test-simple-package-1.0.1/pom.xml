@@ -1,0 +1,17 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>hu.ponte.js</groupId>
+	<artifactId>jspm-mvn-test-simple-package</artifactId>
+	<version>1.0.1-SNAPSHOT</version>
+
+	<build>
+		<resources>
+			<resource>
+				<directory>src</directory>
+				<targetPath>jspackage</targetPath>
+			</resource>
+		</resources>
+	</build>
+
+</project>

@@ -30,3 +30,5 @@ Develop
 JavaScript: Run `npm run watch` in `/javascript`.
 
 Java: Use the `pom.xml` in `/java`.
+
+Test: Run `npm test` in `/javascript`.

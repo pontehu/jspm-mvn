@@ -6,13 +6,16 @@
     "registry": "http://192.168.0.3:4873/"
   },
   "devDependencies": {
+    "jasmine": "^2.4.1",
+    "rimraf": "^2.5.2",
     "typescript": "^1.8.10",
     "typings": "^0.8.1"
   },
   "scripts": {
     "build": "mvn -f ../java/pom.xml clean package && typings install && tsc",
     "watch": "typings install && tsc --watch",
-    "prepublish": "mvn -f ../java/pom.xml clean package && typings install && tsc"
+    "prepublish": "mvn -f ../java/pom.xml clean package && typings install && tsc",
+    "test": "jasmine"
   },
   "dependencies": {
     "bluebird": "^3.3.5",
