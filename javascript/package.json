@@ -13,8 +13,8 @@
   },
   "scripts": {
     "build": "mvn -f ../java/pom.xml clean package && typings install && tsc",
-    "watch": "typings install && tsc --watch",
-    "prepublish": "mvn -f ../java/pom.xml clean package && typings install && tsc",
+    "watch": "tsc --watch",
+    "prepublish": "npm run build && npm run test",
     "test": "jasmine"
   },
   "dependencies": {
