@@ -1,7 +1,7 @@
 /*
-======
-Unused
-======
+ ======
+ Unused
+ ======
 */
 
 import {exec} from "child_process";
@@ -9,7 +9,7 @@ import * as path from "path";
 import * as config from "./config";
 import {unpack} from "./unpacker";
 
-const STDOUT_GREP = /\SUCCESS:(.*?)(\r|\n)/;
+const STDOUT_GREP = /SUCCESS:(.*?)(\r|\n)/;
 
 function execAsync(command:string) {
 	return new Promise<string>((resolve, reject) => {
