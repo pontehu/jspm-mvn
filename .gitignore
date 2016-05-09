@@ -3,6 +3,7 @@
 .idea
 java/target
 javascript/bin
+javascript/coverage
 javascript/lib
 javascript/node_modules
 javascript/typings

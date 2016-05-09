@@ -12,6 +12,7 @@ Directory structure
 
 - `/javascript` - jspm-mvn registry root directory
     - `/bin` - directory for the `helper-jar-with-dependencies.jar` jar output of the jspm-mvn-helper project  (generated)
+    - `/coverage` - coverage report directory
     - `/lib` - typescript output directory (generated)
     - `/src` - typescript source files
     - `/typings` - typescript typings directory (generated)
@@ -32,3 +33,5 @@ JavaScript: Run `npm run watch` in `/javascript`.
 Java: Use the `pom.xml` in `/java`.
 
 Test: Run `npm test` in `/javascript`.
+
+JS Coverage report: Run `npm run cover` in `/javascript`. The coverage is in `/javascript/coverage`

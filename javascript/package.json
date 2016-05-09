@@ -6,6 +6,7 @@
     "registry": "http://192.168.0.3:4873/"
   },
   "devDependencies": {
+    "istanbul": "^0.4.3",
     "jasmine": "^2.4.1",
     "rimraf": "^2.5.2",
     "typescript": "^1.8.10",
@@ -15,7 +16,8 @@
     "build": "mvn -f ../java/pom.xml clean package && typings install && tsc",
     "watch": "tsc --watch",
     "prepublish": "npm run build && npm run test",
-    "test": "jasmine"
+    "test": "jasmine",
+    "cover": "istanbul cover jasmine"
   },
   "dependencies": {
     "bluebird": "^3.3.5",
