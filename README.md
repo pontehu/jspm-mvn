@@ -11,12 +11,14 @@ Directory structure
     - `/target` - maven target directory  (generated)
 
 - `/javascript` - jspm-mvn registry root directory
-    - `/bin` - directory for the `helper-jar-with-dependencies.jar` jar output of the jspm-mvn-helper project  (generated)
-    - `/coverage` - coverage report directory
+    - `/bin` - directory for the `helper-jar-with-dependencies.jar` jar output of the jspm-mvn-helper project (generated)
+    - `/coverage` - coverage report directory (generated)
     - `/lib` - typescript output directory (generated)
+    - `/node_modules` - NodeJS dependencies (generated)
+    - `/spec` - test resources
     - `/src` - typescript source files
     - `/typings` - typescript typings directory (generated)
-    - `/typings-custom` - typings custom typings directory for missing `.d.ts` files
+    - `/typings-custom` - typescript custom typings directory for missing `.d.ts` files
 
 Installation
 ------------
