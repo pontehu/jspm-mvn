@@ -17,8 +17,12 @@ export function testWrap(test:() => PromiseLike<any>) {
 	};
 }
 
-export function getMavenPackagePath(packageName:string, ...rest:string[]) {
-	return path.resolve(__dirname, "../../spec/support/packages", packageName, ...rest);
+export function getMavenPackagePath(packageName:string, subpath?:string) {
+	const p = path.resolve(__dirname, "../../spec/support/packages", packageName);
+	if (subpath) {
+		return path.join(p, subpath);
+	}
+	return p;
 }
 
 export function mvnCleanInstall(packageName:string) {
