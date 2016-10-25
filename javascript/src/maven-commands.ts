@@ -4,8 +4,9 @@ import {sendRequest} from "./maven-connector";
 
 
 export async function getVersions(packageName: string) {
-	const groupId = config.groupId;
-	const artifactId = packageName;
+	const packageGroups = packageName.split("/");
+	const artifactId = packageGroups.pop();
+	const groupId = [config.groupId].concat(packageGroups).join(".");
 	const versions: string[] = await sendRequest({ command: "versions", groupId: groupId, artifactId: artifactId });
 	return versions.map((version) => {
 		return {
