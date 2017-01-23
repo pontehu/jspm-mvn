@@ -20,7 +20,7 @@ export class CharacterTerminatedToBufferObjectStream extends Transform {
 				}
 				this.push(finalBuffer);
 
-				this._dataBuffer = undefined;
+				this._dataBuffer = new Buffer([]);
 				startFrom = i + 1; //Skip this terminator character
 			}
 		}
