@@ -1,9 +1,9 @@
 {
   "name": "jspm-mvn",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "main": "lib/index.js",
   "publishConfig": {
-    "registry": "http://192.168.0.3:4873/"
+    "registry": "http://nexus.ponte:4873/"
   },
   "bin": "lib/jspm-mvn.js",
   "devDependencies": {
