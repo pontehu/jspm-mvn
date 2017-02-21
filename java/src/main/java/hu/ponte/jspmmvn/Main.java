@@ -1,12 +1,13 @@
 package hu.ponte.jspmmvn;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.codehaus.plexus.util.xml.pull.XmlPullParserException;
 import org.eclipse.aether.resolution.ArtifactResolutionException;
 import org.eclipse.aether.resolution.VersionRangeResolutionException;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -52,24 +53,29 @@ public class Main {
             }
             ObjectMapper mapper = new ObjectMapper();
             System.out.println("SUCCESS:" + mapper.writeValueAsString(out));
-        } catch (ArtifactResolutionException | VersionRangeResolutionException | IOException e) {
+        } catch (ArtifactResolutionException | VersionRangeResolutionException | IOException | XmlPullParserException e) {
             e.printStackTrace();
             System.exit(1);
         }
     }
-    private static Versions getRequestHandler() {
+    private static Versions getRequestHandler() throws IOException, XmlPullParserException
+    {
         if (versions == null) {
-            versions = new Versions();
+            versions = new Versions(new File(System.getProperty("pomfile")));
         }
         return versions;
     }
-    private static String download(String[] args) throws ArtifactResolutionException, JsonProcessingException {
+    private static String download(String[] args) throws ArtifactResolutionException, IOException, XmlPullParserException
+    {
         return getRequestHandler().download(args[0], args[1], args[2], args[3]);
     }
-    private static List<String> versions(String[] args) throws ArtifactResolutionException, JsonProcessingException, VersionRangeResolutionException {
+    private static List<String> versions(String[] args)
+        throws ArtifactResolutionException, IOException, VersionRangeResolutionException, XmlPullParserException
+    {
         return getRequestHandler().findVersions(args[0], args[1]);
     }
-    private static void connect(String[] args) throws IOException {
+    private static void connect(String[] args) throws IOException, XmlPullParserException
+    {
         ObjectMapper objectMapper = new ObjectMapper();
         Socket socket = new Socket("localhost", Integer.parseInt(args[0]));
         InputStream inputStream = socket.getInputStream();

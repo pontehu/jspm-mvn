@@ -3,6 +3,7 @@ package hu.ponte.jspmmvn;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.apache.maven.repository.internal.DefaultVersionRangeResolver;
 import org.apache.maven.repository.internal.MavenRepositorySystemUtils;
+import org.codehaus.plexus.util.xml.pull.XmlPullParserException;
 import org.eclipse.aether.DefaultRepositorySystemSession;
 import org.eclipse.aether.RepositorySystem;
 import org.eclipse.aether.RepositorySystemSession;
@@ -24,7 +25,7 @@ import org.eclipse.aether.transport.http.HttpTransporterFactory;
 import org.eclipse.aether.version.Version;
 
 import java.io.File;
-import java.util.ArrayList;
+import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -34,20 +35,9 @@ public class Versions
 	private RepositorySystemSession session;
 	private RepositorySystem repositorySystem;
 
-	Versions() {
-		ArrayList<RemoteRepository> remoteRepositories = new ArrayList<>();
-		String repositoryEnv = System.getenv().get("JSPM_MVN_REPOSITORIES");
-		if (repositoryEnv != null) {
-			String[] repositoryEnvArray = repositoryEnv.split(",");
-			for (String repo : repositoryEnvArray) {
-				String id = repo.substring(0, repo.indexOf('='));
-				String url= repo.substring(repo.indexOf('=') + 1);
-				RemoteRepository remoteRepo = new RemoteRepository.Builder(id, "default", url).build();
-				remoteRepositories.add(remoteRepo);
-			}
-		}
-
-		repositories = remoteRepositories;
+	Versions(File pomFile) throws IOException, XmlPullParserException
+	{
+		repositories = RepositoryListResolver.getRemoteRepositoriesFromPom(pomFile);
 		repositorySystem = newRepositorySystem();
 		session = createSession(repositorySystem);
 	}

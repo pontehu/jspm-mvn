@@ -1,16 +1,18 @@
-import {Registry} from "../registry";
+import {Registry, setCWD} from "../registry";
 import {IVersion} from "../registry-interface";
 import {mvnCleanInstall, getMavenPackagePath, testWrap} from "./helper";
 import * as path from "path";
 import * as fs from "fs";
 import * as rimraf from "rimraf";
 
+setCWD(path.resolve(__dirname, "../../spec/support/subject"));
+
 jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000;
 describe("Registry", () => {
 	const SIMPLE_PACKAGE = "jspm-mvn-test-simple-package";
 	const SIMPLE_PACKAGE_1_0_0 = "jspm-mvn-test-simple-package-1.0.0";
 	const SIMPLE_PACKAGE_1_0_1 = "jspm-mvn-test-simple-package-1.0.1";
-	const tempDir = path.resolve(__dirname, "../../spec/support/tempDir");
+	const tempDir = path.resolve(__dirname, "../../spec/support/subject/tempDir");
 
 	let registry:Registry;
 	beforeAll(testWrap(async () => {

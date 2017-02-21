@@ -7,25 +7,29 @@
   },
   "bin": "lib/jspm-mvn.js",
   "devDependencies": {
-    "istanbul": "^0.4.3",
-    "jasmine": "^2.4.1",
-    "rimraf": "^2.5.2",
-    "typescript": "^1.8.10",
-    "typings": "^0.8.1"
+    "@types/bluebird": "^3.0.37",
+    "@types/jasmine": "^2.5.43",
+    "@types/mkdirp": "^0.3.29",
+    "@types/node": "^7.0.5",
+    "@types/rimraf": "0.0.28",
+    "istanbul": "^0.4.5",
+    "jasmine": "^2.5.3",
+    "rimraf": "^2.6.0",
+    "typescript": "^2.1.6"
   },
   "scripts": {
     "clean": "rimraf bin coverage lib",
     "build-java-helper": "mvn -f ../java/pom.xml clean package",
-    "build": "npm run clean && npm run build-java-helper && typings install && tsc",
+    "build": "npm run clean && npm run build-java-helper && tsc",
     "watch": "npm run build && tsc --watch",
     "prepublish": "npm run build && npm run test",
     "test": "jasmine",
     "cover": "istanbul cover jasmine"
   },
   "dependencies": {
-    "bluebird": "^3.3.5",
+    "bluebird": "^3.4.7",
     "mkdirp": "^0.5.1",
-    "yauzl": "^2.4.1"
+    "yauzl": "^2.7.0"
   },
   "peerDependencies": {
     "jspm": ">0.17.0-beta.1"

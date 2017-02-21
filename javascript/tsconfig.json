@@ -5,15 +5,12 @@
 		"sourceMap": true,
 		"outDir": "lib",
 		"rootDir": "src",
-		"noImplicitAny": true
+		"noImplicitAny": true,
+		"moduleResolution": "node"
 	},
-	"exclude": [
-		"bin",
-		"coverage",
-		"lib",
-		"node_modules",
-		"spec",
-		"typings/browser",
-		"typings/browser.d.ts"
+	"include": [
+		"src",
+		"node_modules/@types/node",
+		"node_modules/@types/jasmin"
 	]
 }
