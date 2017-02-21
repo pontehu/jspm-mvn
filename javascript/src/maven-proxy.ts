@@ -27,8 +27,10 @@ export class MavenJspmProxy {
 
 	private async _getPomPath() {
 		const possiblePomPath = await this._getPossiblePomPath();
+		const constants = fs.constants;
+		const R_OK = typeof constants === "object" ? constants.R_OK : (<any>fs).R_OK;
 		try {
-			await access(possiblePomPath, fs.constants.R_OK);
+			await access(possiblePomPath, R_OK);
 		} catch(e) {
 			throw Error(`jspm-mvn: Failed to access ${possiblePomPath}. Make sure the pom.xml is either in your current working directory, or configure jspm.pomPath in your package.json file. The path is relative to the package.json file.`);
 		}
