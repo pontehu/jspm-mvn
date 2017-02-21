@@ -47,6 +47,9 @@ public class RepositoryListResolver
 				break;
 			}
 			pomFile = new File(pomFile.getParentFile(), parent.getRelativePath());
+			if (!pomFile.exists()) {
+				break;
+			}
 		}
 
 		return repositoryList.stream().map(RepositoryListResolver::convertRepositoryToRemoteRepository).collect(Collectors.toList());
