@@ -22,7 +22,7 @@ describe("Registry", () => {
 	}));
 	beforeEach(() => {
 		rimraf.sync(tempDir);
-		registry = new Registry();
+		registry = new Registry({groupId: "hu.ponte.js"});
 	});
 	afterEach(() => {
 		rimraf.sync(tempDir);

@@ -1,13 +1,12 @@
-import * as config from "./config";
 import {unpack} from "./unpacker";
 import {MavenJspmProxy} from "./maven-proxy";
 
 
-export async function getVersions(mavenProxy:MavenJspmProxy, packageName: string) {
+export async function getVersions(mavenProxy:MavenJspmProxy, groupId: string, packageName: string) {
 	const packageGroups = packageName.split("/");
 	const artifactId = packageGroups.pop();
-	const groupId = [config.groupId].concat(packageGroups).join(".");
-	const versions: string[] = await mavenProxy.sendRequest<string[]>({ command: "versions", groupId: groupId, artifactId: artifactId });
+	const fullGroupId = [groupId].concat(packageGroups).join(".");
+	const versions: string[] = await mavenProxy.sendRequest<string[]>({ command: "versions", groupId: fullGroupId, artifactId: artifactId });
 	return versions.map((version) => {
 		return {
 			version: version,
