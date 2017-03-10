@@ -1,10 +1,7 @@
 {
   "name": "jspm-mvn",
-  "version": "0.5.1",
+  "version": "0.6.0",
   "main": "lib/index.js",
-  "publishConfig": {
-    "registry": "http://nexus.ponte:4873/"
-  },
   "bin": "lib/jspm-mvn.js",
   "devDependencies": {
     "@types/bluebird": "^3.0.37",
@@ -22,7 +19,7 @@
     "build-java-helper": "mvn -f ../java/pom.xml clean package",
     "build": "npm run clean && npm run build-java-helper && tsc",
     "watch": "npm run build && tsc --watch",
-    "prepublish": "npm run build && npm run test",
+    "prepublish": "",
     "test": "jasmine",
     "cover": "istanbul cover jasmine"
   },
@@ -32,6 +29,6 @@
     "yauzl": "^2.7.0"
   },
   "peerDependencies": {
-    "jspm": ">0.17.0-beta.1"
+    "jspm": "~0.16.0 || ^0.17.0-beta.1"
   }
 }
