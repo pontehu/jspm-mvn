@@ -4,18 +4,22 @@ This package provides maven repository support for [jspm](http://jspm.io/), so y
 
 ## Install
 
-- Install globally: `npm install jspm-mvn -g`
+- Install globally: `npm install jspm-mvn -g` **(Not yet published)**
 - Add to jspm: `jspm registry create mvn jspm-mvn`
 
 ## Maven artifact format
 
 A folder named `jspackage` in the root of the artifact which contains the js files and the `package.json` file.
 
-The artifact's version must be semver compatible.
-Good versions: `1.2.3`, `1.2.3-SNAPSHOT`
+The artifact's version must be semver compatible.<br>
+Good versions: `1.2.3`, `1.2.3-SNAPSHOT`<br>
 Bad versions: `1.2`, `1.2-SNAPSHOT`
 
 Example packages under `/examples`
+
+### Options
+
+If your `package.json` and `pom.xml` isn't in the same folder you need to specify where jspm-mvn can find the `pom.xml`. In your `package.json` add a `jspm.pomPath` key pointing to the `pom.xml` relative to the `package.json` file. This option is useful for end/webapp maven projects where you need to include the js files in a resource folder.
 
 ## Non Goal
 
