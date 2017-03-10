@@ -1,12 +1,12 @@
+/.idea
 /.vscode
+/examples
+/java-helper-project
 /coverage
 /lib/spec
 /node_modules
 /spec
 /src
-/typings
-/typings-custom
 /.gitignore
-/.npmrc
 /tsconfig.json
 /tslint.json

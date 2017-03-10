@@ -1,8 +1,7 @@
-.vscode
+/.vscode
 *.iml
-.idea
-java/target
-javascript/bin
-javascript/coverage
-javascript/lib
-javascript/node_modules
+/.idea
+/java-helper
+/coverage
+/lib
+/node_modules

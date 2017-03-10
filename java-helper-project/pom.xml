@@ -39,7 +39,7 @@
 			<plugin>
 				<artifactId>maven-assembly-plugin</artifactId>
 				<configuration>
-					<outputDirectory>${project.basedir}/../javascript/bin/</outputDirectory>
+					<outputDirectory>${project.basedir}/../java-helper/</outputDirectory>
 					<finalName>helper</finalName>
 					<archive>
 						<manifest>
