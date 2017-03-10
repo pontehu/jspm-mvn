@@ -1,5 +1,7 @@
 {
   "name": "jspm-mvn",
+  "description": "Maven registry endpoint for JSPM",
+  "license": "MIT",
   "version": "0.6.0",
   "main": "lib/index.js",
   "bin": "lib/jspm-mvn.js",
