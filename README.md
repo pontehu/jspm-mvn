@@ -1,45 +1,28 @@
-JSPM-MVN
-========
+# Maven Registry Endpoint for JSPM
 
-This library provides a maven registry to jspm.
+This package provides maven repository support for [jspm](http://jspm.io/), so you can `jspm install mvn:my-amazing-package`. Works with both jspm `0.16.x` and `0.17.0-beta.x`.
 
-Directory structure
--------------------
+## Install
 
-- `/java` - jspm-mvn-helper root directory
-    - `/src` - source for the helper
-    - `/target` - maven target directory  (generated)
+- Install globally: `npm install jspm-mvn -g`
+- Add to jspm: `jspm registry create mvn jspm-mvn`
 
-- `/javascript` - jspm-mvn registry root directory
-    - `/bin` - directory for the `helper-jar-with-dependencies.jar` jar output of the jspm-mvn-helper project (generated)
-    - `/coverage` - coverage report directory (generated)
-    - `/lib` - typescript output directory (generated)
-    - `/node_modules` - NodeJS dependencies (generated)
-    - `/spec` - test resources
-    - `/src` - typescript source files
-    - `/typings` - typescript typings directory (generated)
-    - `/typings-custom` - typescript custom typings directory for missing `.d.ts` files
+## Maven artifact format
 
-Installation
-------------
+A folder named `jspackage` in the root of the artifact which contains the js files and the `package.json` file.
 
-1. Ensure you have NodeJS, npm and maven installed.
-2. Ensure that you have `mvn` command in your `PATH`.
-3. Run `npm install` in `/javascript`.
+The artifact's version must be semver compatible.
+Good versions: `1.2.3`, `1.2.3-SNAPSHOT`
+Bad versions: `1.2`, `1.2-SNAPSHOT`
 
-Develop
--------
+Example packages under `/examples`
 
-### JavaScript
+## Non Goal
 
-- Clean: Run `npm run clean` in `/javascript`.
-- Build: Run `npm run build` in `/javascript`.
-- Watch: Run `npm run watch` in `/javascript`.
-- Test: Run `npm test` in `/javascript`.
-- Coverage report: Run `npm run cover` in `/javascript`.
+**This isn't a new registry for js modules in maven!** This package is to fit your js modules into your maven infrastructure and have the benifit of installing packages/artifacts locally.
 
-Coverage report will output to `/javascript/coverage`.
+## Limitations
 
-### Java
-
-Use the `pom.xml` in `/java`.
+- Every js package must be under the same `groupId` *(probably fixable)*
+- Cannot use non semver compatible artifact version
+- `pom.xml` must provide a repository to resolve from, global config is ignored *(probably fixable)*

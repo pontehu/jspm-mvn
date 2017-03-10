@@ -1,0 +1,58 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>hu.ponte.js</groupId>
+	<artifactId>depending-package</artifactId>
+	<version>1.0.0</version>
+
+	<build>
+		<resources>
+			<resource>
+				<directory>src</directory>
+				<targetPath>jspackage</targetPath>
+			</resource>
+			<resource>
+				<directory>.</directory>
+				<includes>
+					<include>package.json</include>
+				</includes>
+				<targetPath>jspackage</targetPath>
+			</resource>
+		</resources>
+
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<version>1.8</version>
+				<executions>
+					<execution>
+						<id>install node_modules</id>
+						<phase>initialize</phase>
+						<configuration>
+							<target>
+								<!--Linux and Mac-->
+								<exec executable="jspm" dir="${project.basedir}" failonerror="true" osfamily="unix">
+									<arg value="install"/>
+								</exec>
+								<!--Windows-->
+								<exec executable="cmd" dir="${project.basedir}" failonerror="true" osfamily="windows">
+									<arg value="/c"/>
+									<arg value="jspm"/>
+									<arg value="install"/>
+								</exec>
+							</target>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+				</executions>
+				<goals>
+					<goal>run</goal>
+				</goals>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>

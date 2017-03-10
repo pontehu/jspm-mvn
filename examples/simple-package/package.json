@@ -1,0 +1,9 @@
+{
+  "name": "simple-package",
+  "version": "1.0.0",
+  "jspm": {
+    "registry": "mvn",
+    "format": "amd",
+    "main": "main.js"
+  }
+}

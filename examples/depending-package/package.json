@@ -1,0 +1,12 @@
+{
+  "name": "depending-package",
+  "version": "1.0.0",
+  "jspm": {
+    "registry": "mvn",
+    "format": "amd",
+    "main": "main.js",
+    "dependencies": {
+      "simple-package": "^1.0.0"
+    }
+  }
+}
