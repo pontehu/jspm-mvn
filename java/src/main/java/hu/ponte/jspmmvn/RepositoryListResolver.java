@@ -3,10 +3,10 @@ package hu.ponte.jspmmvn;
 import org.apache.maven.model.Model;
 import org.apache.maven.model.Parent;
 import org.apache.maven.model.Repository;
+import org.apache.maven.model.RepositoryPolicy;
 import org.apache.maven.model.io.xpp3.MavenXpp3Reader;
 import org.codehaus.plexus.util.xml.pull.XmlPullParserException;
 import org.eclipse.aether.repository.RemoteRepository;
-import org.eclipse.aether.repository.RepositoryPolicy;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -57,12 +57,20 @@ public class RepositoryListResolver
 
 	private static RemoteRepository convertRepositoryToRemoteRepository(Repository repository) {
 		RemoteRepository.Builder builder = new RemoteRepository.Builder(repository.getId(), repository.getLayout(), repository.getUrl());
-		builder.setReleasePolicy(convertRepositoryPolicy(repository.getReleases()));
-		builder.setSnapshotPolicy(convertRepositoryPolicy(repository.getSnapshots()));
+		RepositoryPolicy releases = repository.getReleases();
+		if (releases != null)
+		{
+			builder.setReleasePolicy(convertRepositoryPolicy(releases));
+		}
+		org.apache.maven.model.RepositoryPolicy snapshot = repository.getSnapshots();
+		if (snapshot != null)
+		{
+			builder.setSnapshotPolicy(convertRepositoryPolicy(snapshot));
+		}
 		return builder.build();
 	}
 
-	private static RepositoryPolicy convertRepositoryPolicy(org.apache.maven.model.RepositoryPolicy repositoryPolicy) {
+	private static org.eclipse.aether.repository.RepositoryPolicy convertRepositoryPolicy(RepositoryPolicy repositoryPolicy) {
 		String updatePolicy = repositoryPolicy.getUpdatePolicy();
 		if (updatePolicy == null) {
 			updatePolicy = "daily";
@@ -71,6 +79,6 @@ public class RepositoryListResolver
 		if (checksumPolicy == null) {
 			checksumPolicy = "warn";
 		}
-		return new RepositoryPolicy(repositoryPolicy.isEnabled(), updatePolicy, checksumPolicy);
+		return new org.eclipse.aether.repository.RepositoryPolicy(repositoryPolicy.isEnabled(), updatePolicy, checksumPolicy);
 	}
 }
