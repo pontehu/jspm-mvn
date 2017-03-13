@@ -17,7 +17,8 @@ describe("Registry", () => {
 	let registry:Registry;
 	beforeAll(testWrap(async () => {
 		process.stdout.write("Installing test maven packages... ");
-		await Promise.all([mvnCleanInstall(SIMPLE_PACKAGE_1_0_0), mvnCleanInstall(SIMPLE_PACKAGE_1_0_1)]);
+		await mvnCleanInstall(SIMPLE_PACKAGE_1_0_0);
+		await mvnCleanInstall(SIMPLE_PACKAGE_1_0_1);
 		console.log("Done");
 	}));
 	beforeEach(() => {
