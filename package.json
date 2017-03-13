@@ -4,6 +4,13 @@
   "license": "MIT",
   "version": "0.6.0",
   "main": "lib/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zenorbi/jspm-mvn"
+  },
+  "bugs": {
+    "url": "https://github.com/zenorbi/jspm-mvn/issues"
+  },
   "devDependencies": {
     "@types/bluebird": "^3.0.37",
     "@types/jasmine": "^2.5.43",
