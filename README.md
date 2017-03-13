@@ -4,7 +4,7 @@ This package provides maven repository support for [jspm](http://jspm.io/), so y
 
 ## Install
 
-- Install globally: `npm install jspm-mvn -g` **(Not yet published)**
+- Install globally: `npm install jspm-mvn -g`
 - Add to jspm: `jspm registry create mvn jspm-mvn`
 
 ## Maven artifact format
