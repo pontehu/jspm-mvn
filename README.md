@@ -2,6 +2,8 @@
 
 This package provides maven repository support for [jspm](http://jspm.io/), so you can `jspm install mvn:my-amazing-package`. Works with both jspm `0.16.x` and `0.17.0-beta.x`.
 
+This means you don't need to link or deploy your packages to test them in another project, you can just install them locally using `mvn install` and jspm-mvn will use what maven knows. Because jspm-mvn uses the real maven (hence the java helper) you can even deploy to any maven repository using `mvn deploy` and maven will find and download that for jspm-mvn using your maven rules for update and snapshot intervals.
+
 ## Install
 
 - Install globally: `npm install jspm-mvn -g`
