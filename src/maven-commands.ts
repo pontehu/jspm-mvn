@@ -19,7 +19,7 @@ export async function getVersions(mavenProxy:MavenJspmProxy, groupId: string, pa
 	});
 }
 
-export async function downloadPackage(mavenProxy:MavenJspmProxy, meta: any, outDir: string) {
+export async function downloadPackage(mavenProxy:MavenJspmProxy, meta: any, packagePathInArtifact: string, outDir: string) {
 	const resPath = await mavenProxy.sendRequest<string>({ command: "download", groupId: meta.artifact.groupId, artifactId: meta.artifact.artifactId, version: meta.artifact.version });
-	await unpack(resPath, outDir);
+	await unpack(resPath, packagePathInArtifact, outDir);
 }

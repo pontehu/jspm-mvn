@@ -4,7 +4,6 @@ import * as _mkdirp from "mkdirp";
 import {Readable} from "stream";
 import * as Bluebird from "bluebird";
 import * as path from "path";
-import * as config from "./config";
 
 const mkdirp = Bluebird.promisify(_mkdirp);
 
@@ -19,7 +18,10 @@ async function writeToFile(entry:Readable, p:string) {
 	});
 }
 
-export async function unpack(filePath:string, outDir:string) {
+export async function unpack(filePath:string, innerFolderPath: string, outDir:string) {
+	if (!innerFolderPath.endsWith("/")) {
+		innerFolderPath = innerFolderPath + "/";
+	}
 	const zipFile = await Bluebird.promisify(yauzl.open)(filePath, {lazyEntries: true});
 
 	const endPromise = new Promise<any>((resolve, reject) => zipFile.on("end", resolve));
@@ -27,8 +29,8 @@ export async function unpack(filePath:string, outDir:string) {
 	async function processEntry(entry:yauzl.Entry) {
 		const isDir = entry.fileName.endsWith("/");
 		if (isDir) return;
-		if (entry.fileName.indexOf(config.packagePathInArtifact) !== 0) return;
-		const p = entry.fileName.slice(config.packagePathInArtifact.length);
+		if (entry.fileName.indexOf(innerFolderPath) !== 0) return;
+		const p = entry.fileName.slice(innerFolderPath.length);
 		const outPath = path.resolve(outDir, p);
 		const readable = await Bluebird.promisify(zipFile.openReadStream, {context: zipFile})(entry);
 		await writeToFile(readable, outPath);
