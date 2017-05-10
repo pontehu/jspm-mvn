@@ -71,10 +71,7 @@ public class RepositoryListResolver
 	}
 
 	private static org.eclipse.aether.repository.RepositoryPolicy convertRepositoryPolicy(RepositoryPolicy repositoryPolicy) {
-		String updatePolicy = repositoryPolicy.getUpdatePolicy();
-		if (updatePolicy == null) {
-			updatePolicy = "daily";
-		}
+		String updatePolicy = "always"; //Needs to always check the updates for available versions (maven-metadata.xml).
 		String checksumPolicy = repositoryPolicy.getChecksumPolicy();
 		if (checksumPolicy == null) {
 			checksumPolicy = "warn";
