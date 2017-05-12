@@ -8,16 +8,30 @@ const access = Bluebird.promisify<void, string, number>(fs.access);
 
 export class MavenJspmProxy {
 	private _mavenConnectionPromise: Promise<MavenConnection>;
-	private _requestCounter: number = 0;
+	private _requestCounter = 0;
 	private _packageJsonPath:string;
+	private _packageJsonCache: Promise<any>|undefined;
 
 	constructor(packageJsonPath:string) {
 		this._packageJsonPath = packageJsonPath;
+		this._packageJsonCache = undefined;
+	}
+
+	private async _readPackageJson() {
+		const packageJson = await readFile(this._packageJsonPath, "utf-8");
+		const json = JSON.parse(packageJson);
+		return json;
+	}
+
+	public async getPackageJson(): Promise<any> {
+		if (!this._packageJsonCache) {
+			this._packageJsonCache = this._readPackageJson();
+		}
+		return await this._packageJsonCache;
 	}
 
 	private async _getPossiblePomPath() {
-		const packageJsonFile = await readFile(this._packageJsonPath, "utf-8");
-		const json = JSON.parse(packageJsonFile);
+		const json = await this.getPackageJson();
 		if (typeof json.jspm === "object" && typeof json.jspm.pomPath === "string") {
 			return path.resolve(path.dirname(this._packageJsonPath), json.jspm.pomPath);
 		} else {

@@ -36,7 +36,7 @@ export class Registry implements IJSPMRegistry {
 		const versionMap: any = {};
 		versions.forEach((version) => {
 			versionMap[version.version] = {
-				hash: version.version + Date.now(),
+				hash: version.hash,
 				meta: version
 			};
 		});
