@@ -7,7 +7,7 @@ const readFile = Bluebird.promisify<string, string, string>(fs.readFile);
 const access = Bluebird.promisify<void, string, number>(fs.access);
 
 export class MavenJspmProxy {
-	private _mavenConnectionPromise: Promise<MavenConnection>;
+	private _mavenConnectionPromise: Promise<MavenConnection> | undefined;
 	private _requestCounter = 0;
 	private _packageJsonPath:string;
 	private _packageJsonCache: Promise<any>|undefined;

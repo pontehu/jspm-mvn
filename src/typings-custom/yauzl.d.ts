@@ -8,6 +8,7 @@ declare module "yauzl" {
 		readEntry(): void;
 		on(name: "entry", func: (entry: Entry) => void): this;
 		on(name: string, func: Function): this;
+		close(): void;
 
 		openReadStream(entry:Entry, callback:(err:Error, readStream:Readable) => void):void;
 	}

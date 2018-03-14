@@ -1,5 +1,5 @@
 import {Registry, setCWD} from "../registry";
-import {IVersion} from "../registry-interface";
+import {IVersion, ILookupResult} from "../registry-interface";
 import {mvnCleanInstall, getMavenPackagePath, testWrap} from "./helper";
 import * as path from "path";
 import * as fs from "fs";
@@ -38,12 +38,12 @@ describe("Registry", () => {
 		expect(versions).toEqual({
 			versions: {
 				"1.0.0-SNAPSHOT": {
-					hash: jasmine.any(String),
-					meta: jasmine.any(Object)
+					hash: jasmine.any(String) as any,
+					meta: jasmine.any(Object) as any
 				},
 				"1.0.1-SNAPSHOT": {
-					hash: jasmine.any(String),
-					meta: jasmine.any(Object)
+					hash: jasmine.any(String) as any,
+					meta: jasmine.any(Object) as any
 				}
 			}
 		});

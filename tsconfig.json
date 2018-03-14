@@ -5,8 +5,8 @@
 		"sourceMap": true,
 		"outDir": "lib",
 		"rootDir": "src",
-		"noImplicitAny": true,
-		"moduleResolution": "node"
+		"moduleResolution": "node",
+		"strict": true
 	},
 	"include": [
 		"src",

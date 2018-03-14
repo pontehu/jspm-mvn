@@ -1,7 +1,7 @@
 import {Transform} from "stream";
 
 export class CharacterTerminatedToBufferObjectStream extends Transform {
-	private _dataBuffer:Buffer;
+	private _dataBuffer: Buffer | undefined;
 	constructor(private _terminator:number) {
 		super(<any>{
 			writableObjectMode:false,

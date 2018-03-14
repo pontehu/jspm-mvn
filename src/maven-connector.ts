@@ -49,13 +49,29 @@ export interface MavenConnection {
 function listenOnRandom(server: Server, host: string) {
 	return new Promise<void>((resolve, reject) => {
 		function retry(retryCount: number) {
-			server.once("listening", () => {
+			function cleanup() {
+				server.removeListener("listening", listeningHandler);
+				server.removeListener("error", errorHandler);
+			}
+			function listeningHandler() {
+				cleanup();
 				resolve();
-			});
-			server.once("error", (err) => {
-				if (retryCount >= 10) return reject(err);
-				retry(retryCount + 1);
-			});
+			}
+			function errorHandler(err: Error) {
+				cleanup();
+				if ((err as any).code === "EADDRINUSE") {
+					if (retryCount >= 10) {
+						reject(err);
+					} else {
+						retry(retryCount + 1);
+					}
+				} else {
+					reject(err);
+				}
+			}
+			server.on("listening", listeningHandler);
+			server.on("error", errorHandler);
+
 			server.listen(0, host);
 		}
 
@@ -119,6 +135,9 @@ export function createMavenConnection(env: Map<string, string>) {
 		listenOnRandom(server, "localhost").then(() => {
 			const address = server.address();
 			mavenInstance = runMaven(address.port, env);
+			mavenInstance.on("close", (code, signal) => {
+				console.log(`Maven exited with code ${code}`);
+			});
 
 			timeout = setTimeout(() => {
 				server.close();
