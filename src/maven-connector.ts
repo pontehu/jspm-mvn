@@ -136,7 +136,7 @@ export function createMavenConnection(env: Map<string, string>) {
 			const address = server.address();
 			mavenInstance = runMaven(address.port, env);
 			mavenInstance.on("close", (code, signal) => {
-				console.log(`Maven exited with code ${code}`);
+				reject(new Error(`Maven exited with code ${code}`));
 			});
 
 			timeout = setTimeout(() => {
