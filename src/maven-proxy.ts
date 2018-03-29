@@ -2,12 +2,13 @@ import {createMavenConnection, MavenConnection} from "./maven-connector";
 import * as Bluebird from "bluebird";
 import * as fs from "fs";
 import * as path from "path";
+import { SingleValueCache } from "./utils/cache";
 
 const readFile = Bluebird.promisify<string, string, string>(fs.readFile);
 const access = Bluebird.promisify<void, string, number>(fs.access);
 
 export class MavenJspmProxy {
-	private _mavenConnectionPromise: Promise<MavenConnection> | undefined;
+	private _mavenConnectionCache = new SingleValueCache<MavenConnection>();
 	private _requestCounter = 0;
 	private _packageJsonPath:string;
 	private _packageJsonCache: Promise<any>|undefined;
@@ -59,10 +60,9 @@ export class MavenJspmProxy {
 	}
 
 	private _getMavenConnection() {
-		if (!this._mavenConnectionPromise) {
-			this._mavenConnectionPromise = this._createMavenConnection();
-		}
-		return this._mavenConnectionPromise;
+		return this._mavenConnectionCache.get(async () => {
+			return await this._createMavenConnection();
+		});
 	}
 
 	async sendRequest<T>(command: any) {

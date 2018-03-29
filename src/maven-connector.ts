@@ -143,7 +143,7 @@ export function createMavenConnection(env: Map<string, string>) {
 				server.close();
 				mavenInstance.kill();
 				reject(new Error(`Timeout connecting to maven on port ${address.port}`));
-			}, 3000);
+			}, 10000);
 		}, (err) => {
 			reject(err);
 		});

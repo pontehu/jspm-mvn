@@ -6,7 +6,7 @@ import * as Bluebird from "bluebird";
 import * as path from "path";
 import * as _pump from "pump";
 
-const mkdirp = Bluebird.promisify(_mkdirp);
+const mkdirp = Bluebird.promisify<_mkdirp.Made, string>(_mkdirp);
 const pump = Bluebird.promisify<any, _pump.Stream[]>(_pump);
 const yauzlOpen = Bluebird.promisify(yauzl.open);
 

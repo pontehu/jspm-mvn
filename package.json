@@ -2,33 +2,36 @@
   "name": "jspm-mvn",
   "description": "Maven registry endpoint for JSPM",
   "license": "MIT",
-  "version": "0.6.3",
+  "version": "0.6.4",
   "main": "lib/index.js",
+  "author": {
+    "name": "Norbert Zentai"
+  },
   "repository": {
     "type": "git",
-    "url": "https://github.com/zenorbi/jspm-mvn"
+    "url": "https://github.com/pontehu/jspm-mvn"
   },
   "bugs": {
-    "url": "https://github.com/zenorbi/jspm-mvn/issues"
+    "url": "https://github.com/pontehu/jspm-mvn/issues"
   },
   "devDependencies": {
     "@types/bluebird": "^3.0.37",
     "@types/jasmine": "^2.5.43",
-    "@types/mkdirp": "^0.3.29",
-    "@types/node": "^7.0.5",
+    "@types/mkdirp": "^0.5.2",
+    "@types/node": "^9.6.1",
     "@types/pump": "^1.0.1",
-    "@types/rimraf": "0.0.28",
+    "@types/rimraf": "^2.0.2",
     "istanbul": "^0.4.5",
-    "jasmine": "^2.5.3",
+    "jasmine": "^3.1.0",
     "rimraf": "^2.6.0",
-    "typescript": "^2.1.6"
+    "typescript": "^2.8.1"
   },
   "scripts": {
     "clean": "rimraf bin coverage lib",
     "build-java-helper": "mvn -f java-helper-project/pom.xml clean package",
     "build": "npm run clean && npm run build-java-helper && tsc",
     "watch": "npm run build && tsc --watch",
-    "prepublish": "npm run build && npm run test",
+    "prepublishOnly": "npm run build && npm run test",
     "test": "jasmine",
     "cover": "istanbul cover jasmine"
   },
