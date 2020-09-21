@@ -33,6 +33,9 @@ function runMaven(port: number, env: Map<string, string>) {
 	env.forEach((value, key) => {
 		args.push(`-D${key}=${value}`);
 	});
+	if (process.env.JSPM_MVN_USER_HOME) {
+		args.push(`-Duser.home=${process.env.JSPM_MVN_USER_HOME}`);
+	}
 	args.push("-jar", jarPath, "connect", "" + port);
 	return spawn("java", args, {
 		stdio: "inherit"

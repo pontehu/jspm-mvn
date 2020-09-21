@@ -9,7 +9,7 @@ export class CharacterTerminatedToBufferObjectStream extends Transform {
 		});
 	}
 	_transform(data:Buffer, enc:string, cb:Function) {
-		if (!this._dataBuffer) this._dataBuffer = new Buffer([]); //Make sure we have a dataBuffer
+		if (!this._dataBuffer) this._dataBuffer = Buffer.from([]); //Make sure we have a dataBuffer
 
 		let startFrom = 0;
 		for (let i = 0; i < data.length; ++i) {
@@ -20,7 +20,7 @@ export class CharacterTerminatedToBufferObjectStream extends Transform {
 				}
 				this.push(finalBuffer);
 
-				this._dataBuffer = new Buffer([]);
+				this._dataBuffer = Buffer.from([]);
 				startFrom = i + 1; //Skip this terminator character
 			}
 		}
@@ -38,7 +38,7 @@ export class BufferObjectToCharacterTerminatedStream extends Transform {
 			writableObjectMode:true,
 			readableObjectMode:false
 		});
-		this._terminatorBuffer = new Buffer([terminator]);
+		this._terminatorBuffer = Buffer.from([terminator]);
 	}
 	_transform(data:Buffer, enc:string, cb:Function) {
 		this.push(Buffer.concat([data, this._terminatorBuffer]));
@@ -61,7 +61,7 @@ export class JsonToBufferObjectStream extends Transform {
 		super({objectMode: true});
 	}
 	_transform(data:any, enc:string, cb:Function) {
-		this.push(new Buffer(JSON.stringify(data), "utf-8"));
+		this.push(Buffer.from(JSON.stringify(data), "utf-8"));
 		cb();
 	}
 }

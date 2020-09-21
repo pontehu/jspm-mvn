@@ -2,7 +2,7 @@
   "name": "jspm-mvn",
   "description": "Maven registry endpoint for JSPM",
   "license": "MIT",
-  "version": "0.6.4",
+  "version": "0.6.5",
   "main": "lib/index.js",
   "author": {
     "name": "Norbert Zentai"
